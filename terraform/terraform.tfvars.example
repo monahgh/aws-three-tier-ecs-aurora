@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars (gitignored) only if you want to change defaults.
+aws_region   = "eu-central-1"
+project_name = "three-tier-lab"
+
+# Load generator: set loadgen_count = 0 to stop it; "-M prepared" to demo session pinning.
+loadgen_count       = 1
+loadgen_rate        = 30
+loadgen_extra_flags = ""

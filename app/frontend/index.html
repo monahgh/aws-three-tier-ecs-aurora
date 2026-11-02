@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Three-tier lab</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; color: #1f2937; }
+    h1 { font-size: 1.4rem; }
+    section { border: 1px solid #d1d5db; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+    form { display: flex; gap: .5rem; }
+    input { flex: 1; padding: .5rem; }
+    button { padding: .5rem 1rem; cursor: pointer; }
+    ul { padding-left: 1.2rem; }
+    pre { background: #f3f4f6; padding: .75rem; overflow-x: auto; font-size: .85rem; }
+    .muted { color: #6b7280; font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <h1>Three-tier lab: CloudFront + S3 / ALB + ECS Fargate / RDS Proxy + Aurora</h1>
+
+  <section>
+    <h2>Add item (writer via proxy read/write endpoint)</h2>
+    <form id="add-form">
+      <input id="item-name" placeholder="Item name" maxlength="200" required>
+      <button type="submit">Add</button>
+    </form>
+    <p id="add-status" class="muted"></p>
+  </section>
+
+  <section>
+    <h2>Items (reader via proxy READ_ONLY endpoint)</h2>
+    <button id="refresh">Refresh</button>
+    <ul id="items"></ul>
+    <p class="muted">A new item can take a moment to appear: reads go to the reader (replica lag).</p>
+  </section>
+
+  <section>
+    <h2>Who am I? (read/write split)</h2>
+    <button id="whoami">Call /api/whoami</button>
+    <pre id="whoami-out">Click the button.</pre>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
